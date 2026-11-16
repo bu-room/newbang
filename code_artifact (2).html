@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>좋은 집 찾기 - 내가 도와줄게요!</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Pretendard / Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'sans-serif'],
+            display: ['"Jua"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#E83E33',
+              coral: '#FF6B5B',
+              light: '#FFF5F4',
+              warm: '#FDFBF7',
+              brown: '#5C4033'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .hero-shadow {
+      box-shadow: 0 20px 45px -15px rgba(232, 62, 51, 0.22);
+    }
+    .card-hover {
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 32px -12px rgba(0, 0, 0, 0.12);
+    }
+  </style>
+</head>
+<body class="bg-brand-warm text-gray-800 antialiased selection:bg-brand-red selection:text-white">
+
+  <!-- 상단 네비게이션 바 -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-red-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <!-- 브랜드 로고 -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-2xl bg-brand-red text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-house-chimney text-lg"></i>
+        </div>
+        <div>
+          <span class="font-display text-xl sm:text-2xl text-gray-900 tracking-tight">좋은집<span class="text-brand-red">찾기</span></span>
+          <span class="hidden sm:inline-block ml-2 text-xs font-semibold text-brand-red bg-brand-light px-2 py-0.5 rounded-full">든든한 파트너</span>
+        </div>
+      </a>
+
+      <!-- 데스크톱 메뉴 -->
+      <nav class="hidden md:flex items-center gap-8 font-semibold text-gray-600">
+        <a href="#hero" class="hover:text-brand-red transition-colors">매물 검색</a>
+        <a href="#listings" class="hover:text-brand-red transition-colors">추천 매물</a>
+        <a href="#consult" class="hover:text-brand-red transition-colors">맞춤 집 찾기 신청</a>
+      </nav>
+
+      <!-- 우측 CTA 버튼 -->
+      <div class="flex items-center gap-2">
+        <a href="#consult" class="bg-brand-red hover:bg-red-600 text-white font-bold text-sm sm:text-base px-4 sm:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+          <i class="fa-solid fa-paw"></i>
+          <span>무료 상담 신청</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 히어로 섹션 -->
+  <section id="hero" class="relative overflow-hidden pt-8 pb-16 sm:pt-12 sm:pb-24 bg-gradient-to-b from-sky-50/70 via-white to-brand-warm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- 왼쪽: 카피 및 빠른 매물 검색 위젯 -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left order-2 lg:order-1">
+          <div class="inline-flex items-center gap-2 bg-white border border-red-100 px-4 py-1.5 rounded-full shadow-sm">
+            <span class="text-brand-red text-sm"><i class="fa-solid fa-heart"></i></span>
+            <span class="text-sm font-bold text-gray-700">내가 도와줄게요! 100% 실매물 안심 중개</span>
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-gray-900 leading-tight">
+            좋은 집,<br>
+            <span class="text-brand-red relative inline-block">
+              지금 바로 찾아드려요!
+              <svg class="w-full h-3 absolute -bottom-1 left-0 text-brand-coral/40" viewBox="0 0 200 12" fill="none">
+                <path d="M2 9C55 3 145 3 198 9" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-gray-600 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <strong class="text-gray-900">매매 · 전세 · 월세</strong>, 어떤 집을 찾고 계신가요?<br class="hidden sm:inline">
+            발품 팔지 마세요! 든든한 우리 동네 파트너가 조건에 딱 맞는 집을 찾아드립니다.
+          </p>
+
+          <!-- 빠른 매물 검색 박스 -->
+          <div class="bg-white p-4 sm:p-6 rounded-3xl shadow-xl border border-red-100/80 text-left">
+            <!-- 거래 유형 탭 -->
+            <div class="flex gap-2 mb-4" id="hero-tabs">
+              <button type="button" data-type="전체" class="hero-tab active px-4 py-2 rounded-xl font-bold text-sm bg-brand-red text-white shadow-sm transition-all">
+                전체
+              </button>
+              <button type="button" data-type="매매" class="hero-tab px-4 py-2 rounded-xl font-bold text-sm bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-brand-red transition-all">
+                ✓ 매매
+              </button>
+              <button type="button" data-type="전세" class="hero-tab px-4 py-2 rounded-xl font-bold text-sm bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-brand-red transition-all">
+                ✓ 전세
+              </button>
+              <button type="button" data-type="월세" class="hero-tab px-4 py-2 rounded-xl font-bold text-sm bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-brand-red transition-all">
+                ✓ 월세
+              </button>
+            </div>
+
+            <!-- 검색 입력 필드 그룹 -->
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+              <div class="sm:col-span-5 relative">
+                <label class="block text-xs font-bold text-gray-500 mb-1 ml-1">희망 지역 / 역세권</label>
+                <div class="relative">
+                  <i class="fa-solid fa-location-dot absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-red"></i>
+                  <input type="text" id="hero-location" placeholder="예: 강남, 판교, 수지, 홍대" 
+                    class="w-full pl-10 pr-3 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-medium focus:outline-none focus:border-brand-red focus:bg-white transition-colors">
+                </div>
+              </div>
+
+              <div class="sm:col-span-4 relative">
+                <label class="block text-xs font-bold text-gray-500 mb-1 ml-1">희망 가격대</label>
+                <div class="relative">
+                  <i class="fa-solid fa-won-sign absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-red"></i>
+                  <select id="hero-price" class="w-full pl-9 pr-3 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm font-medium focus:outline-none focus:border-brand-red focus:bg-white transition-colors appearance-none">
+                    <option value="all">모든 가격대</option>
+                    <option value="under3">3억 이하 / 보증금 5천 이하</option>
+                    <option value="3to7">3억 ~ 7억대</option>
+                    <option value="over7">7억 이상 프리미엄</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="sm:col-span-3 flex items-end">
+                <button type="button" onclick="executeHeroSearch()" 
+                  class="w-full py-3 px-4 bg-brand-red hover:bg-red-600 active:scale-[0.98] text-white font-bold rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <span>집 찾기</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 신뢰 지표 배지 -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-2 text-sm text-gray-600 font-medium">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-brand-red"></i>
+              <span>허위매물 0% 검증 완료</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-brand-red"></i>
+              <span>권리분석 · 안전계약 지원</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-brand-red"></i>
+              <span>당일 투어 차량 픽업</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 오른쪽: 업로드된 홍보 메인 이미지 -->
+        <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
+          <div class="relative w-full max-w-md lg:max-w-full">
+            <!-- 배경 장식 원 -->
+            <div class="absolute -inset-3 bg-gradient-to-tr from-brand-red/20 via-amber-200/30 to-sky-200/40 rounded-[2.5rem] blur-xl"></div>
+            
+            <!-- 메인 이미지 카드 -->
+            <div class="relative bg-white p-2.5 sm:p-3 rounded-[2rem] hero-shadow border-2 border-white">
+              <img 
+                src="image_eca90c.jpg" 
+                alt="빨간 스카프를 한 귀여운 강아지가 작은 빨간 지붕 집 모형을 들고 좋은 집 지금 바로 찾아드려요 팻말을 든 홍보 이미지" 
+                class="w-full h-auto rounded-[1.5rem] object-cover aspect-square"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x600/FFF5F4/E83E33?text=%EC%A2%8B%EC%9D%80+%EC%A7%91%2C+%EC%A7%80%EA%B8%88+%EB%B0%94%EB%A1%9C+%EC%B0%BE%EC%95%84%EB%93%9C%EB%A0%A4%EC%9A%94!';"
+              >
+              <!-- 플로팅 뱃지 -->
+              <div class="absolute -bottom-4 -left-3 sm:-left-5 bg-white px-4 py-2.5 rounded-2xl shadow-lg border border-red-100 flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-full bg-brand-light text-brand-red flex items-center justify-center font-bold">
+                  <i class="fa-solid fa-paw"></i>
+                </span>
+                <div>
+                  <p class="text-[11px] font-bold text-gray-400 leading-none">오늘의 신규 매물</p>
+                  <p class="text-sm font-extrabold text-gray-800 mt-0.5">+28건 업데이트!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 추천 매물 섹션 -->
+  <section id="listings" class="py-16 sm:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <!-- 섹션 헤더 & 카테고리 필터 -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="inline-block text-brand-red font-bold text-sm bg-brand-light px-3.5 py-1 rounded-full mb-2">
+            <i class="fa-solid fa-star mr-1"></i> 파트너 강력 추천
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl text-gray-900">
+            지금 바로 입주 가능한 추천 매물
+          </h2>
+          <p class="text-gray-500 mt-1.5 text-sm sm:text-base">
+            채광, 교통, 컨디션까지 꼼꼼하게 확인한 검증 매물만 모았습니다.
+          </p>
+        </div>
+
+        <!-- 필터 버튼 그룹 -->
+        <div class="flex flex-wrap gap-2" id="filter-buttons">
+          <button type="button" onclick="filterProperties('전체')" data-filter="전체"
+            class="filter-btn active px-5 py-2.5 rounded-full text-sm font-bold bg-brand-red text-white shadow-sm transition-all">
+            전체 (6)
+          </button>
+          <button type="button" onclick="filterProperties('매매')" data-filter="매매"
+            class="filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-brand-red transition-all">
+            매매
+          </button>
+          <button type="button" onclick="filterProperties('전세')" data-filter="전세"
+            class="filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-brand-red transition-all">
+            전세
+          </button>
+          <button type="button" onclick="filterProperties('월세')" data-filter="월세"
+            class="filter-btn px-5 py-2.5 rounded-full text-sm font-bold bg-gray-100 text-gray-600 hover:bg-red-50 hover:text-brand-red transition-all">
+            월세
+          </button>
+        </div>
+      </div>
+
+      <!-- 검색 결과 알림 바 (필터링 시 표시) -->
+      <div id="search-status-bar" class="hidden mb-6 p-4 rounded-2xl bg-brand-light border border-red-100 flex items-center justify-between">
+        <p id="search-status-text" class="text-sm font-bold text-gray-800"></p>
+        <button type="button" onclick="resetFilters()" class="text-xs font-bold text-brand-red underline hover:text-red-700">
+          전체 매물 보기
+        </button>
+      </div>
+
+      <!-- 매물 카드 그리드 -->
+      <div id="property-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- 자바스크립트로 카드 렌더링 -->
+      </div>
+
+      <!-- 검색 결과 없음 안내 -->
+      <div id="empty-state" class="hidden text-center py-16 bg-brand-warm rounded-3xl border border-dashed border-red-200">
+        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-brand-red text-2xl">
+          <i class="fa-solid fa-dog"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800">조건에 딱 맞는 매물을 찾고 있어요!</h3>
+        <p class="text-gray-500 text-sm mt-1 mb-5">비공개 급매물도 많으니 아래 맞춤 상담을 남겨주시면 바로 찾아드릴게요.</p>
+        <a href="#consult" class="inline-flex items-center gap-2 bg-brand-red text-white font-bold px-6 py-3 rounded-full text-sm shadow-md hover:bg-red-600 transition-colors">
+          <span>맞춤 매물 의뢰하기</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 간편 상담 신청 섹션 -->
+  <section id="consult" class="py-16 sm:py-24 bg-gradient-to-b from-brand-warm to-red-50/60">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="bg-white rounded-[2.5rem] shadow-xl border border-red-100 overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-12">
+          
+          <!-- 좌측 안내 배너 -->
+          <div class="md:col-span-5 bg-gradient-to-br from-brand-red to-brand-coral p-8 sm:p-10 text-white flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-2xl mb-6">
+                <i class="fa-solid fa-house-heart"></i>
+              </div>
+              <h2 class="font-display text-3xl leading-snug mb-3">
+                찾으시는 집이<br>따로 있으신가요?
+              </h2>
+              <p class="text-red-50 text-sm leading-relaxed">
+                원하시는 조건만 간단히 남겨주세요. 공개되지 않은 알짜 매물까지 싹싹 찾아서 연락드리겠습니다!
+              </p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/20 space-y-3 text-sm">
+              <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-clock text-amber-200"></i>
+                <span>평균 15분 이내 빠른 답변</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-shield-halved text-amber-200"></i>
+                <span>안심 번호 보호 · 스팸 없음</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-phone-volume text-amber-200"></i>
+                <span class="font-bold">직통 문의: 1588-0000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 우측 신청 폼 -->
+          <div class="md:col-span-7 p-8 sm:p-10">
+            <form id="consult-form" onsubmit="handleConsultSubmit(event)" class="space-y-5">
+              <div>
+                <label class="block text-sm font-bold text-gray-700 mb-2">1. 원하시는 거래 유형</label>
+                <div class="grid grid-cols-3 gap-2.5">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="dealType" value="매매" class="peer sr-only" checked>
+                    <div class="text-center py-2.5 rounded-xl border-2 border-gray-200 font-bold text-sm text-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-light peer-checked:text-brand-red transition-all">
+                      ✓ 매매
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="dealType" value="전세" class="peer sr-only">
+                    <div class="text-center py-2.5 rounded-xl border-2 border-gray-200 font-bold text-sm text-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-light peer-checked:text-brand-red transition-all">
+                      ✓ 전세
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="dealType" value="월세" class="peer sr-only">
+                    <div class="text-center py-2.5 rounded-xl border-2 border-gray-200 font-bold text-sm text-gray-600 peer-checked:border-brand-red peer-checked:bg-brand-light peer-checked:text-brand-red transition-all">
+                      ✓ 월세
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="consult-region" class="block text-sm font-bold text-gray-700 mb-1.5">2. 희망 지역</label>
+                  <input type="text" id="consult-region" required placeholder="예: 용인 수지구, 분당구"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:bg-white focus:border-brand-red focus:outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="consult-budget" class="block text-sm font-bold text-gray-700 mb-1.5">3. 예상 예산</label>
+                  <input type="text" id="consult-budget" required placeholder="예: 전세 4억대 / 월세 1000-80"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:bg-white focus:border-brand-red focus:outline-none transition-colors">
+                </div>
+              </div>
+
+              <div>
+                <label for="consult-phone" class="block text-sm font-bold text-gray-700 mb-1.5">4. 연락받으실 휴대폰 번호</label>
+                <input type="tel" id="consult-phone" required placeholder="010-0000-0000"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:bg-white focus:border-brand-red focus:outline-none transition-colors">
+              </div>
+
+              <div>
+                <label for="consult-note" class="block text-sm font-bold text-gray-700 mb-1.5">추가 희망 조건 (선택)</label>
+                <input type="text" id="consult-note" placeholder="예: 반려동물 동반 가능, 주차 1대, 역 도보 10분 이내"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm focus:bg-white focus:border-brand-red focus:outline-none transition-colors">
+              </div>
+
+              <button type="submit" 
+                class="w-full py-4 bg-brand-red hover:bg-red-600 active:scale-[0.99] text-white font-extrabold text-base rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paw"></i>
+                <span>무료 맞춤 매물 추천받기</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="bg-white border-t border-gray-100 py-10 text-gray-500 text-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-lg bg-brand-red text-white flex items-center justify-center text-xs">
+          <i class="fa-solid fa-house"></i>
+        </span>
+        <span class="font-display text-lg text-gray-800">좋은집찾기 공인중개사사무소</span>
+      </div>
+      <p class="text-xs sm:text-sm text-center sm:text-right">
+        대표: 김든든 | 등록번호: 제41465-2026-00001호 | 언제든 편하게 문의하세요!
+      </p>
+    </div>
+  </footer>
+
+  <!-- 매물 상세 모달 -->
+  <div id="detail-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl animate-[fadeIn_0.2s_ease-out]">
+      <div id="detail-modal-content"></div>
+    </div>
+  </div>
+
+  <!-- 상담 접수 완료 모달 -->
+  <div id="success-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center shadow-2xl">
+      <div class="w-20 h-20 rounded-full bg-brand-light text-brand-red flex items-center justify-center mx-auto mb-5 text-4xl shadow-inner">
+        <i class="fa-solid fa-paw"></i>
+      </div>
+      <h3 class="font-display text-2xl sm:text-3xl text-gray-900 mb-2">
+        상담 신청이 완료되었어요!
+      </h3>
+      <p id="success-summary" class="text-sm text-gray-600 bg-brand-warm p-4 rounded-2xl border border-red-100 mb-6 leading-relaxed">
+      </p>
+      <button type="button" onclick="closeSuccessModal()" 
+        class="w-full py-3.5 bg-brand-red hover:bg-red-600 text-white font-bold rounded-2xl shadow-md transition-colors">
+        확인했어요!
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // 샘플 추천 매물 데이터
+    const properties = [
+      {
+        id: 1,
+        type: '매매',
+        price: '6억 8,000만',
+        priceCategory: '3to7',
+        title: '햇살 가득한 남향 판상형 3베이 아파트',
+        location: '경기 용인시 수지구 풍덕천동',
+        area: '84.9㎡ (33평)',
+        rooms: '방 3 · 욕실 2',
+        floor: '중층 / 20층',
+        tags: ['신분당선 도보 7분', '올수리 완료', '학세권'],
+        iconColor: 'from-rose-100 to-orange-100',
+        badgeColor: 'bg-brand-red text-white',
+        desc: '거실 창문으로 탁 트인 공원 뷰가 펼쳐지며, 최근 주방과 욕실 전체 리모델링을 마쳐 바로 입주 가능한 최상급 컨디션 매물입니다.'
+      },
+      {
+        id: 2,
+        type: '전세',
+        price: '3억 5,000만',
+        priceCategory: '3to7',
+        title: '신축급 깔끔한 역세권 투룸 오피스텔',
+        location: '경기 성남시 분당구 판교역 인근',
+        area: '59.4㎡ (18평)',
+        rooms: '방 2 · 욕실 1',
+        floor: '고층 / 15층',
+        tags: ['전세자금대출 가능', '풀옵션 빌트인', '자주식 주차'],
+        iconColor: 'from-amber-100 to-yellow-100',
+        badgeColor: 'bg-amber-500 text-white',
+        desc: '보증보험 가입 100% 가능한 안전한 전세 매물입니다. 시스템 에어컨, 세탁기, 건조기, 냉장고가 기본 옵션으로 갖춰져 있습니다.'
+      },
+      {
+        id: 3,
+        type: '월세',
+        price: '1,000 / 75만',
+        priceCategory: 'under3',
+        title: '반려동물 환영! 테라스 있는 감성 신축 빌라',
+        location: '서울 마포구 연남동 숲길 인근',
+        area: '42.0㎡ (13평)',
+        rooms: '방 2 · 욕실 1',
+        floor: '3층 / 5층',
+        tags: ['반려동물 가능', '엘리베이터 완비', '즉시 입주'],
+        iconColor: 'from-emerald-100 to-teal-100',
+        badgeColor: 'bg-emerald-600 text-white',
+        desc: '강아지, 고양이와 함께 살기 좋은 산책로 바로 앞 신축 주택입니다. 채광이 뛰어나고 CCTV 및 보안 현관이 철저합니다.'
+      },
+      {
+        id: 4,
+        type: '매매',
+        price: '8억 9,000만',
+        priceCategory: 'over7',
+        title: '단지 내 수영장·피트니스 품은 대단지 아파트',
+        location: '서울 강남구 역삼동 역세권',
+        area: '102.5㎡ (38평)',
+        rooms: '방 4 · 욕실 2',
+        floor: '14층 / 25층',
+        tags: ['급매물 추천', '로열동 로열층', '커뮤니티 최상'],
+        iconColor: 'from-sky-100 to-indigo-100',
+        badgeColor: 'bg-brand-red text-white',
+        desc: '집주인 사정으로 시세 대비 합리적으로 나온 귀한 매물입니다. 넓은 드레스룸과 팬트리 수납공간이 넉넉합니다.'
+      },
+      {
+        id: 5,
+        type: '전세',
+        price: '2억 4,000만',
+        priceCategory: 'under3',
+        title: '신혼부부 강력추천! 화이트톤 인테리어 빌라',
+        location: '경기 수원시 영통구 광교호수 인근',
+        area: '66.1㎡ (20평)',
+        rooms: '방 3 · 욕실 1',
+        floor: '4층 / 5층',
+        tags: ['버팀목전세대출', '호수공원 산책로', '주차 100%'],
+        iconColor: 'from-purple-100 to-pink-100',
+        badgeColor: 'bg-amber-500 text-white',
+        desc: '중소기업 청년 전세대출 및 신혼부부 버팀목 대출이 모두 가능한 깨끗한 3룸 전세입니다. 조용한 주거 환경이 장점입니다.'
+      },
+      {
+        id: 6,
+        type: '월세',
+        price: '2,000 / 60만',
+        priceCategory: 'under3',
+        title: '지하철 3분 초역세권 분리형 원룸',
+        location: '서울 관악구 서울대입구역 도보 3분',
+        area: '29.8㎡ (9평)',
+        rooms: '오픈형 · 욕실 1',
+        floor: '6층 / 12층',
+        tags: ['관리비 저렴', '단기임대 협의', '보안 철저'],
+        iconColor: 'from-orange-100 to-red-100',
+        badgeColor: 'bg-emerald-600 text-white',
+        desc: '출퇴근과 통학이 편리한 초역세권 오피스텔입니다. 1층 경비실 상주 및 무인택배함이 있어 1인 가구에 최적입니다.'
+      }
+    ];
+
+    let currentTypeFilter = '전체';
+    let currentKeyword = '';
+    let currentPriceFilter = 'all';
+
+    // 히어로 섹션 탭 클릭 이벤트
+    document.querySelectorAll('.hero-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.hero-tab').forEach(b => {
+          b.classList.remove('bg-brand-red', 'text-white', 'shadow-sm');
+          b.classList.add('bg-gray-100', 'text-gray-600');
+        });
+        btn.classList.remove('bg-gray-100', 'text-gray-600');
+        btn.classList.add('bg-brand-red', 'text-white', 'shadow-sm');
+        currentTypeFilter = btn.dataset.type;
+      });
+    });
+
+    // 히어로 검색 실행
+    function executeHeroSearch() {
+      currentKeyword = document.getElementById('hero-location').value.trim();
+      currentPriceFilter = document.getElementById('hero-price').value;
+
+      // 추천 매물 필터 버튼 상태 동기화
+      updateFilterButtonsUI(currentTypeFilter);
+      renderProperties();
+
+      // 추천 매물 섹션으로 부드럽게 스크롤
+      document.getElementById('listings').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 추천 매물 섹션 카테고리 필터 클릭
+    function filterProperties(type) {
+      currentTypeFilter = type;
+      updateFilterButtonsUI(type);
+      renderProperties();
+    }
+
+    function updateFilterButtonsUI(activeType) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.dataset.filter === activeType) {
+          btn.classList.remove('bg-gray-100', 'text-gray-600');
+          btn.classList.add('bg-brand-red', 'text-white', 'shadow-sm');
+        } else {
+          btn.classList.remove('bg-brand-red', 'text-white', 'shadow-sm');
+          btn.classList.add('bg-gray-100', 'text-gray-600');
+        }
+      });
+    }
+
+    function resetFilters() {
+      currentTypeFilter = '전체';
+      currentKeyword = '';
+      currentPriceFilter = 'all';
+      document.getElementById('hero-location').value = '';
+      document.getElementById('hero-price').value = 'all';
+      updateFilterButtonsUI('전체');
+      renderProperties();
+    }
+
+    // 매물 카드 렌더링
+    function renderProperties() {
+      const grid = document.getElementById('property-grid');
+      const emptyState = document.getElementById('empty-state');
+      const statusBar = document.getElementById('search-status-bar');
+      const statusText = document.getElementById('search-status-text');
+
+      const filtered = properties.filter(item => {
+        const matchType = currentTypeFilter === '전체' || item.type === currentTypeFilter;
+        const matchKeyword = !currentKeyword || 
+          item.location.includes(currentKeyword) || 
+          item.title.includes(currentKeyword) ||
+          item.tags.some(t => t.includes(currentKeyword));
+        const matchPrice = currentPriceFilter === 'all' || item.priceCategory === currentPriceFilter;
+
+        return matchType && matchKeyword && matchPrice;
+      });
+
+      // 필터 검색 상태 바 표시 여부
+      if (currentKeyword || currentPriceFilter !== 'all') {
+        statusBar.classList.remove('hidden');
+        statusText.innerHTML = `<i class="fa-solid fa-filter text-brand-red mr-1.5"></i>검색 조건: [${currentTypeFilter}] ${currentKeyword ? `'${currentKeyword}'` : ''} — 총 <span class="text-brand-red">${filtered.length}건</span>의 매물을 찾았습니다.`;
+      } else {
+        statusBar.classList.add('hidden');
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      grid.innerHTML = filtered.map(item => `
+        <article class="bg-white rounded-3xl border border-gray-100 shadow-md overflow-hidden card-hover flex flex-col justify-between">
+          <div>
+            <!-- 상단 일러스트/썸네일 영역 -->
+            <div class="relative h-44 bg-gradient-to-br ${item.iconColor} p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="${item.badgeColor} text-xs font-extrabold px-3.5 py-1.5 rounded-full shadow-sm">
+                  ✓ ${item.type}
+                </span>
+                <span class="bg-white/90 backdrop-blur-sm text-gray-700 text-xs font-bold px-3 py-1 rounded-full">
+                  실매물 인증
+                </span>
+              </div>
+
+              <!-- 집 아이콘 그래픽 -->
+              <div class="self-center my-auto text-center">
+                <div class="w-16 h-16 rounded-2xl bg-white/90 shadow-sm flex items-center justify-center mx-auto text-brand-red text-3xl">
+                  <i class="fa-solid fa-house-chimney-window"></i>
+                </div>
+              </div>
+
+              <div class="text-xs font-semibold text-gray-600 flex items-center gap-1">
+                <i class="fa-solid fa-location-dot text-brand-red"></i>
+                <span>${item.location}</span>
+              </div>
+            </div>
+
+            <!-- 본문 정보 -->
+            <div class="p-6">
+              <div class="flex items-baseline gap-1.5 mb-1.5">
+                <span class="text-sm font-bold text-brand-red">${item.type}</span>
+                <h3 class="text-2xl font-extrabold text-gray-900 tracking-tight">${item.price}</h3>
+              </div>
+
+              <h4 class="font-bold text-gray-800 text-base mb-3 line-clamp-1">
+                ${item.title}
+              </h4>
+
+              <!-- 면적 / 방 / 층수 스펙 -->
+              <div class="grid grid-cols-3 gap-2 py-2.5 px-3 bg-gray-50 rounded-2xl text-xs font-semibold text-gray-600 mb-4 text-center">
+                <div>${item.area}</div>
+                <div class="border-x border-gray-200">${item.rooms}</div>
+                <div>${item.floor}</div>
+              </div>
+
+              <!-- 특징 태그 -->
+              <div class="flex flex-wrap gap-1.5">
+                ${item.tags.map(tag => `
+                  <span class="text-xs font-semibold bg-brand-light text-brand-red px-2.5 py-1 rounded-lg">
+                    #${tag}
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <!-- 하단 버튼 -->
+          <div class="px-6 pb-6 pt-1">
+            <button type="button" onclick="openDetailModal(${item.id})"
+              class="w-full py-3 rounded-2xl border-2 border-red-100 hover:border-brand-red hover:bg-brand-red text-brand-red hover:text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5">
+              <span>상세 정보 및 문의하기</span>
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // 매물 상세 모달 열기
+    function openDetailModal(id) {
+      const item = properties.find(p => p.id === id);
+      if (!item) return;
+
+      const modal = document.getElementById('detail-modal');
+      const content = document.getElementById('detail-modal-content');
+
+      content.innerHTML = `
+        <div class="bg-gradient-to-r ${item.iconColor} p-6 flex items-center justify-between">
+          <span class="${item.badgeColor} text-xs font-extrabold px-3.5 py-1.5 rounded-full">
+            ✓ ${item.type} 추천 매물
+          </span>
+          <button type="button" onclick="closeDetailModal()" class="w-8 h-8 rounded-full bg-white/80 hover:bg-white text-gray-700 flex items-center justify-center">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="p-6 sm:p-8 space-y-4">
+          <div>
+            <p class="text-sm font-semibold text-gray-500 flex items-center gap-1">
+              <i class="fa-solid fa-location-dot text-brand-red"></i> ${item.location}
+            </p>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-1">
+              <span class="text-brand-red text-xl mr-1">${item.type}</span>${item.price}
+            </h3>
+            <p class="font-bold text-gray-800 mt-1">${item.title}</p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 p-3.5 bg-brand-warm rounded-2xl border border-red-100 text-center text-xs sm:text-sm font-bold text-gray-700">
+            <div><span class="block text-[11px] text-gray-400 font-normal">면적</span>${item.area}</div>
+            <div class="border-x border-red-100"><span class="block text-[11px] text-gray-400 font-normal">구조</span>${item.rooms}</div>
+            <div><span class="block text-[11px] text-gray-400 font-normal">층수</span>${item.floor}</div>
+          </div>
+
+          <p class="text-sm text-gray-600 leading-relaxed bg-gray-50 p-4 rounded-2xl">
+            ${item.desc}
+          </p>
+
+          <div class="flex gap-2.5 pt-2">
+            <button type="button" onclick="applyThisProperty('${item.type}', '${item.location}', '${item.price}')"
+              class="flex-1 py-3.5 bg-brand-red hover:bg-red-600 text-white font-bold rounded-2xl shadow-md transition-colors text-sm">
+              이 매물 방문 예약하기
+            </button>
+            <button type="button" onclick="closeDetailModal()"
+              class="px-5 py-3.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-2xl text-sm transition-colors">
+              닫기
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDetailModal() {
+      const modal = document.getElementById('detail-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // 특정 매물 방문 예약 버튼 클릭 시 상담 폼에 자동 입력 후 이동
+    function applyThisProperty(type, location, price) {
+      closeDetailModal();
+      const radio = document.querySelector(`input[name="dealType"][value="${type}"]`);
+      if (radio) radio.checked = true;
+      document.getElementById('consult-region').value = location;
+      document.getElementById('consult-budget').value = `${type} ${price}`;
+      document.getElementById('consult-note').value = '선택한 추천 매물 방문 투어 희망';
+      document.getElementById('consult').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        document.getElementById('consult-phone').focus();
+      }, 600);
+    }
+
+    // 상담 신청 폼 제출 처리
+    function handleConsultSubmit(e) {
+      e.preventDefault();
+      const dealType = document.querySelector('input[name="dealType"]:checked').value;
+      const region = document.getElementById('consult-region').value.trim();
+      const budget = document.getElementById('consult-budget').value.trim();
+      const phone = document.getElementById('consult-phone').value.trim();
+
+      const summary = document.getElementById('success-summary');
+      summary.innerHTML = `
+        <strong>[${dealType}] ${region}</strong> (${budget}) 조건으로 접수되었습니다.<br>
+        입력하신 <strong>${phone}</strong> 번호로<br>
+        든든한 전담 파트너가 곧 맞춤 매물 리스트를 보내드릴게요!
+      `;
+
+      const modal = document.getElementById('success-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      e.target.reset();
+    }
+
+    function closeSuccessModal() {
+      const modal = document.getElementById('success-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // 모달 바깥 영역 클릭 시 닫기
+    window.addEventListener('click', (e) => {
+      const detailModal = document.getElementById('detail-modal');
+      const successModal = document.getElementById('success-modal');
+      if (e.target === detailModal) closeDetailModal();
+      if (e.target === successModal) closeSuccessModal();
+    });
+
+    // 초기 렌더링
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProperties();
+    });
+  </script>
+</body>
+</html>
